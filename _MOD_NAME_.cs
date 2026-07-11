@@ -5,6 +5,7 @@ using MelonLoader;
 using Menace.ModpackLoader;
 using Menace.SDK;
 using UnityEngine;
+using static _MOD_NAME_ModSettings;
 
 namespace _MOD_NAME_;
 
@@ -15,10 +16,6 @@ public class _MOD_NAME_ : IModpackPlugin
     private HarmonyLib.Harmony _harmony;
     public const string MOD_SETTINGS_GROUP = "_MOD_NAME_";
     private const string _logPrefix = "";
-
-    // Debugging logs
-    private const string DEBUG_LOGGING_KEY = "DebugLogging";
-    private static readonly bool DEFAULT_IS_DEBUG_LOGGING = false;
 
     /// <summary>
     /// Logs a message to the mod's logger (MelonLoader's logging system)
