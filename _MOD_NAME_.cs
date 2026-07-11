@@ -1,10 +1,7 @@
 ﻿using System;
-using Il2CppMenace.Tactical;
-using Il2CppMenace.Tactical.Skills;
 using MelonLoader;
 using Menace.ModpackLoader;
 using Menace.SDK;
-using UnityEngine;
 using static _MOD_NAME_ModSettings;
 
 namespace _MOD_NAME_;
@@ -14,7 +11,7 @@ public class _MOD_NAME_ : IModpackPlugin
     private static _MOD_NAME_ _instance;
     private MelonLogger.Instance _log;
     private HarmonyLib.Harmony _harmony;
-    public const string MOD_SETTINGS_GROUP = "_MOD_NAME_";
+
     private const string _logPrefix = "";
 
     /// <summary>
@@ -33,7 +30,7 @@ public class _MOD_NAME_ : IModpackPlugin
     /// <param name="message">The message to log if debug logging is enabled.</param>
     public static void DebugLog(string message)
     {
-        if (ModSettings.Get<bool>(MOD_SETTINGS_GROUP, DEBUG_LOGGING_KEY))
+        if (GetDebugLogging())
         {
             Log(message);
         }
@@ -52,16 +49,25 @@ public class _MOD_NAME_ : IModpackPlugin
         _harmony = harmony;
 
         // configure the settings
-        _MOD_NAME_ModSettings.ConfigureModSettings(MOD_SETTINGS_GROUP);
+        ConfigureModSettings();
 
         DebugLog("Applying patch...");
+
         var patchesApplied = new PatchSet(_harmony, "_MOD_NAME_").Apply();
 
         DebugLog($"Patches applied: {patchesApplied}");
     }
 
+    /// <summary>
+    /// Called when a scene is loaded. This allows the mod to perform
+    /// scene-specific logic when the scene changes.
+    /// </summary>
+    /// <param name="buildIndex">The current scene's build index.</param>
+    /// <param name="sceneName">The name of the current scene.</param>
     public void OnSceneLoaded(int buildIndex, string sceneName)
     {
-        throw new NotImplementedException();
+        // This method runs whenever a scene changes. If you have expensive operations that
+        // you only want to do, for example, when in the tactical scene, you can
+        // use this to check for the specific scene and perform scene-specific logic.
     }
 }

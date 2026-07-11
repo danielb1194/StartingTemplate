@@ -2,8 +2,8 @@ using Menace.SDK;
 
 public static class _MOD_NAME_ModSettings
 {
+    private const string MOD_SETTINGS_GROUP = "_MOD_NAME_ModSettings";
     public static readonly bool DEFAULT_IS_DEBUG_LOGGING = false;
-
     public static readonly string DEBUG_LOGGING_KEY = "_MOD_NAME_DebugLogging";
 
     /// <summary>
@@ -12,10 +12,10 @@ public static class _MOD_NAME_ModSettings
     /// <param name="modSettingsGroup">
     /// The group name under which the mod settings should be registered.
     /// </param>
-    public static void ConfigureModSettings(string modSettingsGroup)
+    public static void ConfigureModSettings()
     {
         ModSettings.Register(
-            modSettingsGroup,
+            MOD_SETTINGS_GROUP,
             settings =>
             {
                 // Settings for accuracy when flanking
@@ -27,5 +27,10 @@ public static class _MOD_NAME_ModSettings
                 );
             }
         );
+    }
+
+    public static bool GetDebugLogging()
+    {
+        return ModSettings.Get<bool>(MOD_SETTINGS_GROUP, DEBUG_LOGGING_KEY);
     }
 }
