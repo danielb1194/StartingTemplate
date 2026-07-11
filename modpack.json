@@ -1,0 +1,23 @@
+{
+  "manifestVersion": 2,
+  "name": "_MOD_NAME_",
+  "version": "1.0.0",
+  "author": "Dusty",
+  "description": "_MOD_SHORT_DESCRIPTION_",
+  "loadOrder": 10,
+  "patches": {},
+  "assets": {},
+  "code": {
+    "sources": [],
+    "references": [
+      "MelonLoader",
+      "0Harmony",
+      "Il2CppInterop.Runtime",
+      "Il2Cppmscorlib",
+      "Assembly-CSharp",
+      "Menace.ModpackLoader"
+    ],
+    "prebuiltDlls": ["_MOD_NAME_.dll"]
+  },
+  "securityStatus": "SourceVerified"
+}

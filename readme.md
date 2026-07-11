@@ -1,0 +1,3 @@
+# _MOD_NAME_ by Dusty
+
+_MOD_SHORT_DESCRIPTION_
