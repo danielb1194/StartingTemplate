@@ -86,7 +86,7 @@ function Get-RelativePath {
 function Replace-TemplateTokens {
     param([string]$InputText)
 
-    return $InputText.Replace('_MOD_NAME_', $ModName).Replace('_MOD_SHORT_DESCRIPTION_', $ShortDescription).Replace('_MOD_NAME_', $ModName)
+    return $InputText.Replace('_MOD_NAME_', $ModName).Replace('_MOD_SHORT_DESCRIPTION_', $ShortDescription)
 }
 
 Write-Host "Creating new mod template at: $targetRoot"
