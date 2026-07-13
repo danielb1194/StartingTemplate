@@ -8,7 +8,7 @@ namespace _MOD_NAME_;
 
 public class _MOD_NAME_ : IModpackPlugin
 {
-    private static _MOD_NAME_ _instance;
+    private static _MOD_NAME_ _modInstance;
     private MelonLogger.Instance _log;
     private HarmonyLib.Harmony _harmony;
 
@@ -20,7 +20,7 @@ public class _MOD_NAME_ : IModpackPlugin
     /// <param name="message">The message to log</param>
     public static void Log(string message)
     {
-        _instance?._log.Msg($"{_logPrefix} {message}");
+        _modInstance?._log.Msg($"{_logPrefix} {message}");
     }
 
     /// <summary>
@@ -44,7 +44,7 @@ public class _MOD_NAME_ : IModpackPlugin
     /// <param name="harmony"></param>
     public void OnInitialize(MelonLogger.Instance logger, HarmonyLib.Harmony harmony)
     {
-        _instance = this;
+        _modInstance = this;
         _log = logger;
         _harmony = harmony;
 
@@ -69,5 +69,33 @@ public class _MOD_NAME_ : IModpackPlugin
         // This method runs whenever a scene changes. If you have expensive operations that
         // you only want to do, for example, when in the tactical scene, you can
         // use this to check for the specific scene and perform scene-specific logic.
+    }
+
+    /// <summary>
+    /// Helps log all the fields, properties, and methods of the given object
+    /// for debugging purposes.
+    /// </summary>
+    /// <param name="obj">
+    /// The object whose fields, properties, and methods are to be logged.
+    /// </param>
+    private static void LogEverything(object obj)
+    {
+        DebugLog($"============== [LogEverything] Object={obj} ==============");
+        DebugLog("    --- Logging Fields ---");
+        foreach (var field in obj.GetType().GetFields())
+        {
+            DebugLog($"[LogEverything] Field={field.Name} Value={field.GetValue(obj)}");
+        }
+        DebugLog("    --- Logging Properties ---");
+        foreach (var property in obj.GetType().GetProperties())
+        {
+            DebugLog($"[LogEverything] Property={property.Name} Value={property.GetValue(obj)}");
+        }
+        DebugLog("    --- Logging methods ---");
+        foreach (var method in obj.GetType().GetMethods())
+        {
+            DebugLog($"[LogEverything] Method={method.Name}");
+        }
+        DebugLog("============== Finished Logging Everything ==============");
     }
 }
